@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.paginateRaw = exports.paginate = void 0;
+exports.paginateRawAndEntities = exports.paginateRaw = exports.paginate = void 0;
 const typeorm_1 = require("typeorm");
 const pagination_1 = require("./pagination");
 function paginate(repositoryOrQueryBuilder, options, searchOptions) {
@@ -33,7 +33,20 @@ function paginateRaw(queryBuilder, options) {
     });
 }
 exports.paginateRaw = paginateRaw;
-function createPaginationObject(items, totalItems, currentPage, limit, route) {
+function paginateRawAndEntities(queryBuilder, options) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const [page, limit, route] = resolveOptions(options);
+        const totalQueryBuilder = queryBuilder.clone();
+        const itemObject = yield queryBuilder
+            .limit(limit)
+            .offset((page - 1) * limit)
+            .getRawAndEntities();
+        const total = yield totalQueryBuilder.getCount();
+        return createPaginationObject(itemObject.entities, total, page, limit, route, itemObject.raw);
+    });
+}
+exports.paginateRawAndEntities = paginateRawAndEntities;
+function createPaginationObject(items, totalItems, currentPage, limit, route, raw_items) {
     const totalPages = Math.ceil(totalItems / limit);
     const hasFirstPage = route;
     const hasPreviousPage = route && currentPage > 1;
@@ -58,7 +71,7 @@ function createPaginationObject(items, totalItems, currentPage, limit, route) {
         itemsPerPage: limit,
         totalPages: totalPages,
         currentPage: currentPage,
-    }, routes);
+    }, routes, raw_items);
 }
 function resolveOptions(options) {
     const page = options.page;

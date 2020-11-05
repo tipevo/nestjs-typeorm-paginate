@@ -14,10 +14,15 @@ class Pagination {
     /**
      * associated links
      */
-    links) {
+    links, 
+    /**
+    * a list of raw items when queried raw with entities
+    */
+    raw_items) {
         this.items = items;
         this.meta = meta;
         this.links = links;
+        this.raw_items = raw_items;
     }
 }
 exports.Pagination = Pagination;

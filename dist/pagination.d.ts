@@ -12,6 +12,10 @@ export declare class Pagination<PaginationObject> {
      * associated links
      */
     readonly links: IPaginationLinks;
+    /**
+    * a list of raw items when queried raw with entities
+    */
+    readonly raw_items?: any[];
     constructor(
     /**
      * a list of items to be returned
@@ -24,5 +28,9 @@ export declare class Pagination<PaginationObject> {
     /**
      * associated links
      */
-    links: IPaginationLinks);
+    links: IPaginationLinks, 
+    /**
+    * a list of raw items when queried raw with entities
+    */
+    raw_items?: any[]);
 }
