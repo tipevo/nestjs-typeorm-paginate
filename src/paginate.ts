@@ -91,16 +91,16 @@ function createPaginationObject<T>(
       : '',
   };
 
-  return new Pagination(
+  return new Pagination( // TODO: change to snake case / optionality
     items,
 
     {
-      totalItems: totalItems,
-      itemCount: items.length,
-      itemsPerPage: limit,
+      total_items: totalItems,
+      item_count: items.length,
+      items_per_page: limit,
 
-      totalPages: totalPages,
-      currentPage: currentPage,
+      total_pages: totalPages,
+      current_page: currentPage,
     },
 
     routes,
