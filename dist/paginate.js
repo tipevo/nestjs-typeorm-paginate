@@ -65,12 +65,13 @@ function createPaginationObject(items, totalItems, currentPage, limit, route, ra
             ? `${route}${symbol}page=${totalPages}&limit=${limit}`
             : '',
     };
-    return new pagination_1.Pagination(items, {
-        totalItems: totalItems,
-        itemCount: items.length,
-        itemsPerPage: limit,
-        totalPages: totalPages,
-        currentPage: currentPage,
+    return new pagination_1.Pagination(// TODO: change to snake case / optionality
+    items, {
+        total_items: totalItems,
+        item_count: items.length,
+        items_per_page: limit,
+        total_pages: totalPages,
+        current_page: currentPage,
     }, routes, raw_items);
 }
 function resolveOptions(options) {

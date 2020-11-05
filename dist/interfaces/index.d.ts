@@ -16,23 +16,23 @@ export interface IPaginationMeta {
     /**
      * the amount of items on this specific page
      */
-    itemCount: number;
+    item_count: number;
     /**
      * the total amount of items
      */
-    totalItems: number;
+    total_items: number;
     /**
      * the amount of items that were requested per page
      */
-    itemsPerPage: number;
+    items_per_page: number;
     /**
      * the total amount of pages in this paginator
      */
-    totalPages: number;
+    total_pages: number;
     /**
      * the current page this paginator "points" to
      */
-    currentPage: number;
+    current_page: number;
 }
 export interface IPaginationLinks {
     /**
